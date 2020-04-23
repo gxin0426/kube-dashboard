@@ -12,5 +12,6 @@ func init() {
     beego.Router("/deployment", &controllers.DeploymentController{})
     beego.Router("/ingress", &controllers.IngressController{})
     //beego.AutoRouter(&controllers.MainController{})
+    beego.Router("/node", &controllers.NodeController{})
 
 }

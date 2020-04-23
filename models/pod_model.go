@@ -1,8 +1,10 @@
 package models
 
 import (
+	"bytes"
 	"dashboard/utils"
 	"fmt"
+	"io"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"strconv"
@@ -27,9 +29,33 @@ func ShowPod()[]PodStr{
 	fmt.Println("连接k8s success")
 
 	listOption := metav1.ListOptions{}
+	getlogoption := v1.PodLogOptions{}
+
+
+	req := client.CoreV1().Pods("kube-system").GetLogs("coredns-6967fb4995-tbgfn",&getlogoption)
+
+	podLogs, err := req.Stream()
+
+	if err != nil {
+		panic(err)
+		return nil
+	}
+
+	defer podLogs.Close()
+
+	buf := new(bytes.Buffer)
+	_, err = io.Copy(buf, podLogs)
+	if err != nil{
+		panic(err)
+		return nil
+	}
+
+	str := buf.String()
+
+	fmt.Println(str)
+
 
 	podList, err := client.CoreV1().Pods("").List(listOption)
-
 	var lp []PodStr
 
 	for _, pod := range podList.Items{

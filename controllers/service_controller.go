@@ -10,10 +10,14 @@ type  ServiceController struct {
 }
 
 func (this *ServiceController) Get(){
-	servicelist := models.ShowService()
 
+	servicelist := models.ShowService()
 	this.Data["Content"] = models.MakeServiceBlocks(servicelist)
 	this.TplName = "home.html"
+	
 }
+
+
+
 
 

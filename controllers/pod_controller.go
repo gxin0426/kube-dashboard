@@ -20,3 +20,5 @@ func (this *PodController) Get()  {
 	//this.TplName = "home.html"
 
 }
+
+
