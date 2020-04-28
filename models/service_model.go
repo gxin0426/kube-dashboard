@@ -18,7 +18,7 @@ type ServiceStr struct {
 }
 
 
-func ShowService() []ServiceStr {
+func ShowService(ns string) []ServiceStr {
 
 	clientK8s, err := utils.CreateK8SClient()
 
@@ -29,7 +29,7 @@ func ShowService() []ServiceStr {
 	fmt.Println("连接kubernetes success")
 
 	listOption := metav1.ListOptions{}
-	serviceList, err := clientK8s.CoreV1().Services("").List(listOption)
+	serviceList, err := clientK8s.CoreV1().Services(ns).List(listOption)
 	if err != nil{
 		panic(err)
 	}

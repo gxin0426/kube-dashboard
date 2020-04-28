@@ -13,7 +13,14 @@ type DeploymentController struct{
 
 func (this *DeploymentController) Get(){
 
-	deploylist := models.ShowDeployment()
+	ns := this.Ctx.Input.Param(":ns")
+
+	if ns == ""{
+		ns = "default"
+	}
+
+
+	deploylist := models.ShowDeployment(ns)
 	this.Data["Content"] = models.MakeDeploymentBlocks(deploylist)
 	this.TplName = "home.html"
 }

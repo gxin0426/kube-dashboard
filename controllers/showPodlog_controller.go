@@ -1,12 +1,14 @@
 package controllers
 
 import (
+
 	"bytes"
 	"dashboard/utils"
 	"fmt"
 	"github.com/astaxie/beego"
 	"io"
 	v1 "k8s.io/api/core/v1"
+
 )
 
 type ShowPodLogController struct {
@@ -49,4 +51,5 @@ func (this *ShowPodLogController) Get(){
 	fmt.Println(str)
 	this.Data["log"] = str
 	this.TplName = "log.html"
+
 }

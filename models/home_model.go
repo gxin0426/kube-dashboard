@@ -23,7 +23,7 @@ func MakePodBlocks(podlist []PodStr) template.HTML{
 		t.Execute(&buffer, p)
 		htmlHome += buffer.String()
 	}
-	fmt.Println(template.HTML(htmlHome+"</table>"))
+	//fmt.Println(template.HTML(htmlHome+"</table>"))
 	return template.HTML(htmlHome+"</table>")
 }
 

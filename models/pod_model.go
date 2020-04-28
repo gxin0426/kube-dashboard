@@ -17,7 +17,7 @@ type PodStr struct {
 	Age string
 }
 
-func ShowPod()[]PodStr{
+func ShowPod(ns string)([]PodStr, *v1.NamespaceList){
 
 	client, err := utils.CreateK8SClient()
 
@@ -28,12 +28,18 @@ func ShowPod()[]PodStr{
 
 	listOption := metav1.ListOptions{}
 
+	//获取namespace
+	namespace, err := client.CoreV1().Namespaces().List(listOption)
 
+	var nstrList []string
 
+	for _, nms := range namespace.Items{
+		nstrList = append(nstrList, nms.Name)
+	}
 
+	fmt.Println(nstrList)
 
-
-	podList, err := client.CoreV1().Pods("").List(listOption)
+	podList, err := client.CoreV1().Pods(ns).List(listOption)
 	var lp []PodStr
 
 	for _, pod := range podList.Items{
@@ -58,5 +64,6 @@ func ShowPod()[]PodStr{
 
 	}
 
-	return  lp
+	return  lp, namespace
 }
+

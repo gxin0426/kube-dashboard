@@ -10,8 +10,13 @@ type  ServiceController struct {
 }
 
 func (this *ServiceController) Get(){
+	ns := this.Ctx.Input.Param(":ns")
 
-	servicelist := models.ShowService()
+	if ns == ""{
+		ns = "default"
+	}
+
+	servicelist := models.ShowService(ns)
 	this.Data["Content"] = models.MakeServiceBlocks(servicelist)
 	this.TplName = "home.html"
 	

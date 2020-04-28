@@ -12,12 +12,16 @@ type PodController struct {
 func (this *PodController) Get()  {
 
 
-	podlist:= models.ShowPod()
-
-	this.Data["json"] = podlist
-	this.ServeJSON()
-	//this.Data["Content"] = models.MakePodBlocks(podlist)
-	//this.TplName = "home.html"
+	ns := this.Ctx.Input.Param(":ns")
+	podlist := []models.PodStr{}
+	if ns == "" {
+		ns = "default"
+	}
+		podlist, _ = models.ShowPod(ns)
+	//this.Data["json"] = podlist
+	//this.ServeJSON()
+	this.Data["Content"] = models.MakePodBlocks(podlist)
+	this.TplName = "home.html"
 
 }
 

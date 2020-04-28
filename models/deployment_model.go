@@ -20,7 +20,7 @@ type DeploymentStr struct {
 
 
 //展示deployment
-func ShowDeployment() []DeploymentStr{
+func ShowDeployment(ns string) []DeploymentStr{
 
 	client, err := utils.CreateK8SClient()
 
@@ -33,7 +33,7 @@ func ShowDeployment() []DeploymentStr{
 
 	listDeploy := metav1.ListOptions{}
 
-	deploymentList, err := client.AppsV1().Deployments("").List(listDeploy)
+	deploymentList, err := client.AppsV1().Deployments(ns).List(listDeploy)
 
 	if err != nil{
 		panic(err)
