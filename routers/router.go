@@ -13,5 +13,6 @@ func init() {
     beego.Router("/ingress", &controllers.IngressController{})
     //beego.AutoRouter(&controllers.MainController{})
     beego.Router("/node", &controllers.NodeController{})
+	beego.Router("/log/:ns/:podname", &controllers.ShowPodLogController{})
 
 }
