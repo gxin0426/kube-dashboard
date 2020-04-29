@@ -16,3 +16,5 @@ require (
 	k8s.io/client-go v0.0.0-20190819141724-e14f31a72a77
 	k8s.io/utils v0.0.0-20200414100711-2df71ebbae66 // indirect
 )
+
+replace github.com/googleapis/gnostic => github.com/googleapis/gnostic v0.0.0-20170729233727-0c5108395e2d
