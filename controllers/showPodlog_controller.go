@@ -48,8 +48,8 @@ func (this *ShowPodLogController) Get(){
 
 	str := buf.String()
 
-	fmt.Println(str)
-	this.Data["log"] = str
-	this.TplName = "log.html"
+	//fmt.Println(str)
+	this.Data["json"] = str
+	this.ServeJSON()
 
 }

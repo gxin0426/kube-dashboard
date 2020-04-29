@@ -21,8 +21,10 @@ func (this *DeploymentController) Get(){
 
 
 	deploylist := models.ShowDeployment(ns)
-	this.Data["Content"] = models.MakeDeploymentBlocks(deploylist)
-	this.TplName = "home.html"
+	this.Data["json"] = deploylist
+	this.ServeJSON()
+	//this.Data["Content"] = models.MakeDeploymentBlocks(deploylist)
+	//this.TplName = "home.html"
 }
 
 

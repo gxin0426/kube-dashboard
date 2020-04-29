@@ -17,8 +17,10 @@ func (this *ServiceController) Get(){
 	}
 
 	servicelist := models.ShowService(ns)
-	this.Data["Content"] = models.MakeServiceBlocks(servicelist)
-	this.TplName = "home.html"
+	this.Data["json"] = servicelist
+	this.ServeJSON()
+	//this.Data["Content"] = models.MakeServiceBlocks(servicelist)
+	//this.TplName = "home.html"
 	
 }
 

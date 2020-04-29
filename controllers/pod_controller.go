@@ -18,10 +18,10 @@ func (this *PodController) Get()  {
 		ns = "default"
 	}
 		podlist, _ = models.ShowPod(ns)
-	//this.Data["json"] = podlist
-	//this.ServeJSON()
-	this.Data["Content"] = models.MakePodBlocks(podlist)
-	this.TplName = "home.html"
+	this.Data["json"] = podlist
+	this.ServeJSON()
+	//this.Data["Content"] = models.MakePodBlocks(podlist)
+	//this.TplName = "home.html"
 
 }
 
