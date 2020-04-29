@@ -42,7 +42,6 @@ func ShowDaemonset(ns string) []DaemonsetStr{
 		d.Ready = strconv.Itoa(int(daemon.Status.NumberReady))
 		d.Current = strconv.Itoa(int(daemon.Status.CurrentNumberScheduled))
 		d.Age = utils.FltoStr(time.Now().Sub(daemon.GetCreationTimestamp().Time).Hours())
-
 		ld = append(ld, d)
 	}
 	return ld

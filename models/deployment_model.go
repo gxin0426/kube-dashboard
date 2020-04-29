@@ -15,7 +15,6 @@ type DeploymentStr struct {
 	Uptodate string
 	Available string
 	Age string
-
 }
 
 
@@ -50,8 +49,7 @@ func ShowDeployment(ns string) []DeploymentStr{
 		d.Current = strconv.Itoa(int(deployment.Status.Replicas))
 		d.Uptodate = strconv.Itoa(int(deployment.Status.UpdatedReplicas))
 		d.Available = strconv.Itoa(int(deployment.Status.AvailableReplicas))
-		t := utils.FltoStr(time.Now().Sub(deployment.GetCreationTimestamp().Time).Hours())
-		d.Age = t
+		d.Age = utils.FltoStr(time.Now().Sub(deployment.GetCreationTimestamp().Time).Hours())
 
 		ld = append(ld, d)
 	}
