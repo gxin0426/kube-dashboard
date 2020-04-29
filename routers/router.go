@@ -31,6 +31,9 @@ func init() {
 	//log
 	beego.Router("/log/:ns/:podname", &controllers.ShowPodLogController{})
 
+	//ns
+
+	beego.Router("/ns", &controllers.Nscontroller{})
 
 
 }
