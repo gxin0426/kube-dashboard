@@ -14,9 +14,9 @@ func (this *NodeController)Get(){
 
 	showjson := models.ShowNode()
 
-	for _, node := range showjson{
-		this.Data["json"] = node
+
+		this.Data["json"] = showjson
 		this.ServeJSON()
-	}
+
 
 }

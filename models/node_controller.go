@@ -32,12 +32,10 @@ func ShowNode() []NodeStr{
 		n := NodeStr{}
 
 		n.Status = node.Status.Conditions[3].Type
-		//for _ , t := range node.Status.Conditions{
-		//
-		//	fmt.Println("bbbbb    :", t)
-		//
-		//	fmt.Println("aaaaaaaaaaa", t.Type)
-		//}
+		//fmt.Println(node.Status.Conditions[0].Reason)
+		//fmt.Println(node.Status.Conditions[1].Reason)
+		//fmt.Println(node.Status.Conditions[2].Reason)
+		//fmt.Println(node.Status.Conditions[3].Reason)
 		n.Age = utils.FltoStr(time.Now().Sub(node.GetCreationTimestamp().Time).Hours())  + "h"
 		n.Version  = node.Status.NodeInfo.KubeletVersion
 		//fmt.Println(node.Status.NodeInfo.KernelVersion)

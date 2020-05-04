@@ -20,7 +20,8 @@ func (this *ShowPodLogController) Get(){
 	client, err := utils.CreateK8SClient()
 
 	if err != nil{
-		panic(err)
+		this.Data["json"] = string(err.Error())
+		this.ServeJSON()
 	}
 	fmt.Println("连接k8s success")
 
@@ -33,8 +34,8 @@ func (this *ShowPodLogController) Get(){
 	podLogs, err := req.Stream()
 
 	if err != nil {
-		panic(err)
-		return
+		this.Data["json"] = string(err.Error())
+		this.ServeJSON()
 	}
 
 	defer podLogs.Close()
@@ -42,8 +43,7 @@ func (this *ShowPodLogController) Get(){
 	buf := new(bytes.Buffer)
 	_, err = io.Copy(buf, podLogs)
 	if err != nil{
-		panic(err)
-		return
+		this.Data["json"] = string(err.Error())
 	}
 
 	str := buf.String()

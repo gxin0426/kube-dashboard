@@ -19,7 +19,6 @@ func (this *DeploymentController) Get(){
 		ns = "default"
 	}
 
-
 	deploylist := models.ShowDeployment(ns)
 	this.Data["json"] = deploylist
 	this.ServeJSON()
